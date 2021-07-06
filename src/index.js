@@ -6,16 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import allreducers from "./Reducers"
 import {createStore} from "redux"
 import {Provider} from "react-redux"
-
+import {ThemeProvider} from "@material-ui/core"
+import Theme from "./Theme/Theme"
 const myStore = createStore(allreducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 ReactDOM.render(
   <Provider store={myStore}>
+    <ThemeProvider theme={Theme}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  </ThemeProvider>
   </Provider>,
   document.getElementById('root')
 );
