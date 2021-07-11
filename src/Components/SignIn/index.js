@@ -12,7 +12,7 @@ const Index =  (props) => {
               
                 dispatch(Adduserdata(res.data))
                 dispatch(Login())
-                
+                console.log(res.data)
                 
             }).then( (error) => {
                 console.log(error)
