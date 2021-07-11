@@ -9,7 +9,7 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    //maxWidth: 345,
     
     maxHeight:":42vh"
   },

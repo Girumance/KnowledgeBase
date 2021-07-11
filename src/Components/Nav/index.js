@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState } from "react";
 import {
   AppBar,
   Button,
@@ -10,6 +10,9 @@ import {
 
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Serach from "./Search";
+import SignIn from "../SignIn";
+import Dialog from "../Dialog"
+import SignUp from "../SignUp";
 
 const UseStyles = makeStyles({
   root: {
@@ -31,8 +34,12 @@ const UseStyles = makeStyles({
   }
 });
 
-const index = () => {
+
+const Index = () => {
+  const [signIn, setSignIn] = useState(false);
+  const [signUp, setSignUp] = useState(false);
   const classes = UseStyles();
+  
   return (
     <AppBar position="fixed" className={classes.root}>
       <Toolbar className={classes.toolbar}>
@@ -43,14 +50,23 @@ const index = () => {
 
         <div className={classes.right}>
           <Serach />
-          <Button className={classes.button} variant="outlined" color="primary">
-            {" "}
-            Login{" "}
+          <Button onClick={ ()=> setSignUp(true) } className={classes.button} variant="text" color="primary">
+  
+            SignUP
           </Button>
+          <Button onClick={ ()=> setSignIn(true) } className={classes.button} variant="outlined" color="primary">
+  
+            Login
+          </Button>
+          <Dialog value={signIn}  onClose={ ()=> setSignIn(false)}> <SignIn/> </Dialog>
+          <Dialog value={signUp}  onClose={ ()=> setSignUp(false)}> <SignUp/> </Dialog>
         </div>
+       
       </Toolbar>
+
+      
     </AppBar>
   );
 };
 
-export default index;
+export default Index;

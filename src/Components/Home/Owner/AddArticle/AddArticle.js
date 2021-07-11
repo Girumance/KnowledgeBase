@@ -3,7 +3,7 @@ import { FormatAlignCenter } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 const useStyles = makeStyles( theme => ({
     root: {
-      maxWidth: 345,
+      //: 345,
       
       maxHeight:":42vh"
     },

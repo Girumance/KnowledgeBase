@@ -9,7 +9,7 @@ const Presentation = (props) => {
 return (
 
   
-      <Grid container spacing={3}>
+      <Grid container spacing={5}>
 
         {props.AddArticle ?
         <Grid  item sm={4}>
