@@ -1,6 +1,9 @@
 import {Card, makeStyles, Grid, Avatar, Typography, CardContent, CardActionArea} from "@material-ui/core"
 import { FormatAlignCenter } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
+import { useState } from "react";
+import ArticleForm from "./ArticleForm";
+import Dialog from "./../../../Dialog"
 const useStyles = makeStyles( theme => ({
     root: {
       //: 345,
@@ -28,11 +31,11 @@ const useStyles = makeStyles( theme => ({
       
   }))
 const AddArticle = () => {
-
+    const [click, setClick] = useState(false)
     const classes = useStyles();
 
      return(
-        <Card className={classes.root}>
+        <Card onClick={ () => setClick(true)} className={classes.root}>
             <CardActionArea>
             <CardContent>
                             <Grid container justify="center" >
@@ -54,6 +57,7 @@ const AddArticle = () => {
 
             </CardContent>
             </CardActionArea>
+            <Dialog value={click} onClose={() => setClick(false)}><ArticleForm/></Dialog>
         </Card>
      )
         
