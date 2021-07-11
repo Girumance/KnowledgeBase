@@ -5,7 +5,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import {Button} from "@material-ui/core"
-import {react, useState} from "react"
+import {react, useEffect, useState} from "react"
+import { PinDropRounded } from "@material-ui/icons";
 const useStyles = makeStyles({
     root:{
         padding:"30px",
@@ -13,26 +14,54 @@ const useStyles = makeStyles({
     }
 })
 
-const ArticleForm = () => {
+const ArticleForm = ( props ) => {
 const classes = useStyles();
 const [value, setValue] = useState("Publish");
+const [name, setName] = useState("")
+const [content, setContent] = useState("")
+const [tag, setTag] = useState("")
+
+const onSave = () => {
+
+    const data ={
+        name,
+        content,
+        tag,
+        ownerId:props.id
+    }
+
+    props.save(data)
+
+}
+
+useEffect( ()=> {
+    
+    if(props.edit){
+    setName(props.data.name)
+    setContent(props.data.content)
+    setTag(props.data.tag)
+}
+},[])
+
+console.log(props.data)
+
     return (
         
         <Paper className={classes.root}>
             <Typography variant="h4" color="textSecondary">Add Article</Typography><hr/>
             <Grid container direction="column" spacing={2}>
                 <Grid item sm={12}>
-                <TextField placeholder="Name" variant="outlined"/>
+                <TextField value={name} onChange={ event => {setName(event.target.value)}} placeholder="Name" variant="outlined"/>
 
                 </Grid>
 
                 <Grid item sm={12}>
-                <TextField multiline rows={3} placeholder="Content" variant="outlined"/>
+                <TextField value={content} onChange={ event => {setContent(event.target.value)}} multiline rows={3} placeholder="Content" variant="outlined"/>
 
                 </Grid>
 
                 <Grid item sm={12}>
-                <TextField placeholder="Tag" variant="outlined"/>
+                <TextField value={tag} onChange={ event => {setTag(event.target.value)}} placeholder="Tag" variant="outlined"/>
 
                 </Grid>
 
@@ -49,7 +78,7 @@ const [value, setValue] = useState("Publish");
                 </Grid>
 
                 <Grid item sm={12}>
-                    <Button variant="outlined" color="primary" >Save</Button>
+                    <Button onClick={ () => onSave()} variant="outlined" color="primary" >Save</Button>
                 </Grid>
 
 

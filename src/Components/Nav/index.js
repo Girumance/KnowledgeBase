@@ -9,9 +9,9 @@ import {
 } from "@material-ui/core";
 
 import Serach from "./Search";
-import SignIn from "../SignIn";
+import SignIn from "../SignIn/index";
 import Dialog from "../Dialog"
-import SignUp from "../SignUp";
+import SignUp from "../SignUp/index";
 
 const UseStyles = makeStyles({
   root: {

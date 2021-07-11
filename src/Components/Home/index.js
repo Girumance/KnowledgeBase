@@ -1,8 +1,10 @@
 import {Grid} from "@material-ui/core"
 import Owner from "./Owner"
 import Articles from "./Articles"
-const index = () =>{
-
+import {useSelector} from "react-redux"
+const Index = () =>{
+const isLogedIn =  useSelector (state => state.Login)
+const id = useSelector( state => state.UserData.id)
   return (
     <Grid container spacing={2}>
 
@@ -10,7 +12,7 @@ const index = () =>{
 
     <Grid item sm={10}>
 
-        <Owner/>
+       { isLogedIn ?  <Owner id={id}/> : "" }
         <Articles/>
 
 
@@ -25,4 +27,4 @@ const index = () =>{
 }
 
 
-export default index;
+export default Index;

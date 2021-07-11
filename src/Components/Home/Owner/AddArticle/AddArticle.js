@@ -4,6 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { useState } from "react";
 import ArticleForm from "./ArticleForm";
 import Dialog from "./../../../Dialog"
+import axios from "axios";
 const useStyles = makeStyles( theme => ({
     root: {
       //: 345,
@@ -30,9 +31,17 @@ const useStyles = makeStyles( theme => ({
       
       
   }))
-const AddArticle = () => {
+const AddArticle = ({id}) => {
     const [click, setClick] = useState(false)
     const classes = useStyles();
+
+    const onSave = (data) => {
+
+        const url = process.env.REACT_APP_URL+"property/save"
+
+        console.log(data)
+        axios.post(url,data).then( res => console.log(res.data)).then()
+    }
 
      return(
         <Card onClick={ () => setClick(true)} className={classes.root}>
@@ -57,7 +66,7 @@ const AddArticle = () => {
 
             </CardContent>
             </CardActionArea>
-            <Dialog value={click} onClose={() => setClick(false)}><ArticleForm/></Dialog>
+            <Dialog value={click} onClose={() => setClick(false)}><ArticleForm save={onSave} id={id}/></Dialog>
         </Card>
      )
         

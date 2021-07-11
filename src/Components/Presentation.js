@@ -4,8 +4,8 @@ import AddArticle from "./Home/Owner/AddArticle/AddArticle";
 
 
 const Presentation = (props) => {
-
   
+
 return (
 
   
@@ -14,18 +14,19 @@ return (
         {props.AddArticle ?
         <Grid  item sm={4}>
 
-            <AddArticle/>                  
+            <AddArticle id={props.id}/>                  
 
         </Grid>
        : ""}
 
         
         {
+         
             props.data.map( (data, index) => 
 
               <Grid key={index} item sm={4}>
 
-                  <KnowledgeCard/>                  
+                  <KnowledgeCard data ={data}/>                  
 
               </Grid>
 
