@@ -12,7 +12,7 @@ const Index = ()=> {
   
     useEffect(()=>{
   
-        const url = process.env.REACT_APP_URL+"property/published"
+        const url = type == "ADMIN" ? process.env.REACT_APP_URL+"property/All" : process.env.REACT_APP_URL+"property/published"
         
         axios.get(url).then( res => {
           console.log(res.data)

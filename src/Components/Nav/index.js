@@ -14,7 +14,7 @@ import SignIn from "../SignIn/index";
 import Dialog from "../Dialog"
 import SignUp from "../SignUp/index";
 import { useSelector , useDispatch} from "react-redux";
-import {Logout} from "./../../Action"
+import {Logout, Adduserdata} from "./../../Action"
 
 const UseStyles = makeStyles({
   root: {
@@ -53,9 +53,11 @@ const Index = () => {
   const login = useSelector( state => state.Login)
   const dispatch = useDispatch();
   const name = useSelector( state => state.UserData.firstName)
+  const type = useSelector( state => state.UserData.type)
   
   const LogOut = () => {
     dispatch(Logout())
+    dispatch(Adduserdata([]))
   }
   
   return (
@@ -70,11 +72,11 @@ const Index = () => {
           <Serach />
           {
             ! login ? <div>
-          <Button onClick={ ()=> setSignUp(true) } className={classes.button} variant="outlined" color="secondary">
+          <Button style={{marginLeft:10}} onClick={ ()=> setSignUp(true) } className={classes.button} variant="outlined" color="secondary">
   
             SignUP
           </Button>
-          <Button onClick={ ()=> setSignIn(true) } className={classes.button} variant="outlined" color="secondary">
+          <Button style={{marginLeft:10}} onClick={ ()=> setSignIn(true) } className={classes.button} variant="outlined" color="secondary">
   
             Login
           </Button>
@@ -84,10 +86,13 @@ const Index = () => {
 
           : 
           <div  className={classes.Avatar}>
-          <Avatar style={{backgroundColor:"#9DAAF2"}}>
-            <Typography>{name[0]}</Typography>
+            <Button style={{marginRight:10}} color="secondary" variant="text">
+              Users
+            </Button>
+          <Avatar  style={{backgroundColor:"#9DAAF2"}}>
+            <Typography >{name[0]}</Typography>
           </Avatar>
-          <Button onClick={ LogOut } className={classes.button} variant="outlined" color="secondary">
+          <Button style={{marginLeft:10}} onClick={ LogOut } className={classes.button} variant="outlined" color="secondary">
           Logout
         </Button>
         </div>

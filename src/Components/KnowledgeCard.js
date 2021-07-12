@@ -68,7 +68,7 @@ return (
       </CardActionArea>
       <CardActions className={classes.icons}>
         <div>
-          {props.data.date}
+          { props.data.date.slice("T",10)}
         </div>
 
         <div>

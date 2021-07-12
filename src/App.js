@@ -1,7 +1,10 @@
 
 import Navbar from "./Components/Nav/index"
 import Home from "./Components/Home"
+import Users from "./Components/Users"
 import { makeStyles } from "@material-ui/core";
+import { BrowserRouter as Router} from "react-router-dom"
+import {Switch, Route} from "react-router"
 const useStyles  = makeStyles({
   root:{
     backgroundColor:"#e7e7e9"
@@ -10,9 +13,15 @@ const useStyles  = makeStyles({
 export default function App() {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    
+    <Router>
+    <div >
    <Navbar/>
-  <Home/>
+   <Switch>
+    <Route path="/" exact component={Home}/>
+    <Route path="/User" exact component={Users}/>
+  </Switch>
   </div>
+  </Router>
   );
 }
