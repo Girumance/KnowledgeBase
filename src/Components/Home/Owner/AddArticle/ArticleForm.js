@@ -72,6 +72,7 @@ console.log(props.data)
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup aria-label="gender" name="gender1" value={value} onChange={(event) => setValue(event.target.value)}>
         <FormControlLabel value="PUBLISHED" control={<Radio />} label="Publish" />
+      { props.edit ? <FormControlLabel value="UNPUBLISHED" control={<Radio />} label="UnPublish" /> : ""}
         <FormControlLabel value="DRAFT" control={<Radio />} label="Draft" />
        
       </RadioGroup>

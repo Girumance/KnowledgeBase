@@ -32,7 +32,7 @@ const UseStyles = makeStyles({
   return (
     <div className={classes.root}>
       <Typography color="textSecondary" variant="h5" > <Icon><DescriptionOutlinedIcon/></Icon> My Own Articles </Typography>
-      <Presentation data={data} id={id} AddArticle={true} />
+      <Presentation data={data} id={id} AddArticle={true} edit={true} />
     </div>
 
   )

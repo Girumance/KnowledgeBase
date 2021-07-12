@@ -22,7 +22,8 @@ const useStyles = makeStyles({
   icons:{
 
     display:"flex",
-    justifyContent:"space-between"
+    justifyContent:"space-between",
+    alignItems:"flex-end"
   }
 })
 
@@ -71,8 +72,9 @@ return (
         </div>
 
         <div>
-          { type === "ADMIN" ?
-          <div>
+          { props.edit || props.admin?
+          <div className={classes.icons}>
+            <Typography>{props.data.status}</Typography>
           <IconButton> <EditOutlinedIcon onClick={() => setEdit(true)}/> </IconButton>
           <IconButton> <DeleteOutlineOutlinedIcon onClick={ () => setDel(true)}/> </IconButton>
           </div>
@@ -81,6 +83,7 @@ return (
           }
         </div>
       </CardActions>
+      
       <Dialog value={edit} onClose={ () => setEdit(false)}><ArticleForm edit={true} save={onEdit}  data={props.data}/></Dialog>
       <Dialog value={del} onClose={() => setDel(false)}><Delete delete={onDelete} close={() => setDel(false)}/></Dialog>
     </Card>

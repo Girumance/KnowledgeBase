@@ -26,7 +26,7 @@ return (
 
               <Grid key={index} item sm={4}>
 
-                  <KnowledgeCard data ={data}/>                  
+                  <KnowledgeCard data ={data} edit={props.edit} admin={props.admin}/>                  
 
               </Grid>
 

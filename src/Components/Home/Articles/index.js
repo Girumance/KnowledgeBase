@@ -8,6 +8,7 @@ const Index = ()=> {
     
     const [data,setData] = useState([])
     const check = useSelector(state => state.Check)
+    const type = useSelector (state => state.UserData.type)
   
     useEffect(()=>{
   
@@ -24,7 +25,7 @@ const Index = ()=> {
     return (
         <div style={{marginTop:"10vh"}}>
            <Typography color="textSecondary" variant="h5" > <Icon><DescriptionOutlinedIcon/></Icon> Other Articles </Typography>  
-        <Presentation data={data} AddArticle={false}/>
+        <Presentation data={data} AddArticle={false} edit={false} admin={type==="ADMIN"?true:false }/>
 
         </div>
     )
