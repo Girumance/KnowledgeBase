@@ -13,6 +13,7 @@ const Index =  (props) => {
                 dispatch(Adduserdata(res.data))
                 dispatch(Login())
                 console.log(res.data)
+                props.onClose()
                 
             }).then( (error) => {
                 console.log(error)

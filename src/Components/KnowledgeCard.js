@@ -1,9 +1,8 @@
 
-import {Avatar, Card, IconButton, makeStyles} from '@material-ui/core';
+import { Card, IconButton, makeStyles} from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +11,8 @@ import { useState } from 'react';
 import ArticleForm from './Home/Owner/AddArticle/ArticleForm';
 import axios from 'axios';
 import Delete from "./Delete"
+import {useDispatch, useSelector} from "react-redux"
+import {Change} from "./../Action"
 const useStyles = makeStyles({
   root: {
     //maxWidth: 345,
@@ -29,19 +30,23 @@ const KnowledgeCard = (props)=> {
 const classes = useStyles()
 const [edit,setEdit] = useState(false)
 const [del,setDel] = useState(false)
+const dispatch = useDispatch()
+const type = useSelector( state => state.UserData.type)
+
+
  
 
 const onEdit = (data)=> {
   const url= process.env.REACT_APP_URL+"property/update/"+props.data.id
   axios.post(url,data).then( res => {
-    console.log(res.data)
+    dispatch(Change())
   }).then( res => console.log(res))
 }
 
 const onDelete = ()=> {
   const url= process.env.REACT_APP_URL+"property/delete/"+props.data.id
   axios.get(url).then( res => {
-    console.log(res.data)
+    dispatch(Change())
   }).then( res => console.log(res))
 }
 
@@ -49,7 +54,7 @@ const onDelete = ()=> {
 return (
 
 
-  <Card className={classes.root}>
+  <Card elevation={3} className={classes.root}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -66,8 +71,14 @@ return (
         </div>
 
         <div>
+          { type === "ADMIN" ?
+          <div>
           <IconButton> <EditOutlinedIcon onClick={() => setEdit(true)}/> </IconButton>
           <IconButton> <DeleteOutlineOutlinedIcon onClick={ () => setDel(true)}/> </IconButton>
+          </div>
+          : ""
+
+          }
         </div>
       </CardActions>
       <Dialog value={edit} onClose={ () => setEdit(false)}><ArticleForm edit={true} save={onEdit}  data={props.data}/></Dialog>

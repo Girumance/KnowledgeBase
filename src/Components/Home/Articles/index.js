@@ -1,8 +1,26 @@
 import Presentation from "../../Presentation";
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import { Icon, Typography } from "@material-ui/core";
-const index = ()=> {
-        const data =[{name:"fdjlkjlfdf",content:"fdjkjlfdd", date:"1"},{name:"fdjlkjlfdf",content:"fdjkjlfdd", date:"1"},{name:"fdjlkjlfdf",content:"fdjkjlfdd", date:"1"}]
+import {useSelector} from "react-redux"
+import axios from "axios"
+import {useEffect, useState} from "react"
+const Index = ()=> {
+    
+    const [data,setData] = useState([])
+    const check = useSelector(state => state.Check)
+  
+    useEffect(()=>{
+  
+        const url = process.env.REACT_APP_URL+"property/published"
+        
+        axios.get(url).then( res => {
+          console.log(res.data)
+          setData(res.data)
+          
+        }).then( res => { });
+  
+    },[check])
+  
     return (
         <div style={{marginTop:"10vh"}}>
            <Typography color="textSecondary" variant="h5" > <Icon><DescriptionOutlinedIcon/></Icon> Other Articles </Typography>  
@@ -12,4 +30,4 @@ const index = ()=> {
     )
 }
 
-export default index;
+export default Index;

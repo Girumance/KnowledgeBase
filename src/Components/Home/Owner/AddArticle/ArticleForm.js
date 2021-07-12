@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 const ArticleForm = ( props ) => {
 const classes = useStyles();
-const [value, setValue] = useState("Publish");
+const [value, setValue] = useState("PUBLISHED");
 const [name, setName] = useState("")
 const [content, setContent] = useState("")
 const [tag, setTag] = useState("")
@@ -27,7 +27,8 @@ const onSave = () => {
         name,
         content,
         tag,
-        ownerId:props.id
+        ownerId:props.id,
+        status:value
     }
 
     props.save(data)
@@ -70,8 +71,8 @@ console.log(props.data)
                 <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup aria-label="gender" name="gender1" value={value} onChange={(event) => setValue(event.target.value)}>
-        <FormControlLabel value="Publish" control={<Radio />} label="Publish" />
-        <FormControlLabel value="Draft" control={<Radio />} label="Draft" />
+        <FormControlLabel value="PUBLISHED" control={<Radio />} label="Publish" />
+        <FormControlLabel value="DRAFT" control={<Radio />} label="Draft" />
        
       </RadioGroup>
     </FormControl>

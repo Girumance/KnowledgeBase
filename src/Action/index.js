@@ -12,6 +12,12 @@ export const Logout = () => {
     }
 }
 
+export const Change = () => {
+    return {
+        type : "Change"
+    }
+}
+
 export const Adduserdata  = (data) =>{
 
     return{

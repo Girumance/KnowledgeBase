@@ -5,6 +5,8 @@ import { useState } from "react";
 import ArticleForm from "./ArticleForm";
 import Dialog from "./../../../Dialog"
 import axios from "axios";
+import {useDispatch} from "react-redux"
+import {Change} from "./../../../../Action"
 const useStyles = makeStyles( theme => ({
     root: {
       //: 345,
@@ -34,13 +36,14 @@ const useStyles = makeStyles( theme => ({
 const AddArticle = ({id}) => {
     const [click, setClick] = useState(false)
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const onSave = (data) => {
 
         const url = process.env.REACT_APP_URL+"property/save"
 
         console.log(data)
-        axios.post(url,data).then( res => console.log(res.data)).then()
+        axios.post(url,data).then( res => dispatch(Change())).then()
     }
 
      return(

@@ -4,7 +4,7 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import { Icon, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import {useSelector} from "react-redux"
 const UseStyles = makeStyles({
 
   root:{
@@ -15,6 +15,7 @@ const UseStyles = makeStyles({
   const Index = ({id}) =>{
   const classes = UseStyles()
   const [data,setData] = useState([])
+  const check = useSelector(state => state.Check)
 
   useEffect(()=>{
 
@@ -26,7 +27,7 @@ const UseStyles = makeStyles({
         
       }).then( res => { });
 
-  },[])
+  },[check])
 
   return (
     <div className={classes.root}>

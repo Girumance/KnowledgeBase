@@ -1,6 +1,7 @@
 import react, { useState } from "react";
 import {
   AppBar,
+  Avatar,
   Button,
   Icon,
   makeStyles,
@@ -12,6 +13,8 @@ import Serach from "./Search";
 import SignIn from "../SignIn/index";
 import Dialog from "../Dialog"
 import SignUp from "../SignUp/index";
+import { useSelector , useDispatch} from "react-redux";
+import {Logout} from "./../../Action"
 
 const UseStyles = makeStyles({
   root: {
@@ -34,6 +37,11 @@ const UseStyles = makeStyles({
 
   color:{
     color:"#fff"
+  },
+
+  Avatar:{
+    display:"flex",
+    justifyContent:"space-around"
   }
 });
 
@@ -42,6 +50,13 @@ const Index = () => {
   const [signIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const classes = UseStyles();
+  const login = useSelector( state => state.Login)
+  const dispatch = useDispatch();
+  const name = useSelector( state => state.UserData.firstName)
+  
+  const LogOut = () => {
+    dispatch(Logout())
+  }
   
   return (
     <AppBar position="fixed" className={classes.root}>
@@ -53,6 +68,8 @@ const Index = () => {
 
         <div className={classes.right}>
           <Serach />
+          {
+            ! login ? <div>
           <Button onClick={ ()=> setSignUp(true) } className={classes.button} variant="outlined" color="secondary">
   
             SignUP
@@ -61,8 +78,21 @@ const Index = () => {
   
             Login
           </Button>
-          <Dialog value={signIn}  onClose={ ()=> setSignIn(false)}> <SignIn/> </Dialog>
-          <Dialog value={signUp}  onClose={ ()=> setSignUp(false)}> <SignUp/> </Dialog>
+          <Dialog value={signIn}  onClose={ ()=> setSignIn(false)}> <SignIn onClose={ ()=> setSignIn(false)}/> </Dialog>
+          <Dialog value={signUp}  onClose={ ()=> setSignUp(false)}> <SignUp onClose={ ()=> setSignUp(false)}/> </Dialog>
+          </div>
+
+          : 
+          <div  className={classes.Avatar}>
+          <Avatar style={{backgroundColor:"#9DAAF2"}}>
+            <Typography>{name[0]}</Typography>
+          </Avatar>
+          <Button onClick={ LogOut } className={classes.button} variant="outlined" color="secondary">
+          Logout
+        </Button>
+        </div>
+
+}
         </div>
        
       </Toolbar>

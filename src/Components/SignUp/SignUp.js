@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -46,8 +46,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassowrd] = useState("")
+
+  const SignUp = () => {
+
+    const data = {
+      firstName,
+      lastName,
+      email,
+      password,
+      type:"USER"
+    }
+
+    props.signUp(data);
+
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -71,6 +90,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={ event => setFirstName(event.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -82,6 +102,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={ event => setLastName(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +114,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={ event => setEmail(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,6 +127,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={ event => setPassowrd(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -115,7 +138,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-           
+           onClick={SignUp}
             fullWidth
             variant="contained"
             color="primary"
